@@ -1,0 +1,177 @@
+<h5 class="breadcrumbs-title mt-0 mb-0 display-inline hide-on-small-and-down"><span>เกี่ยวกับเรา</span></h5>
+<ol class="breadcrumbs mb-0">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">เมนูหลัก</a>
+    </li>
+    <li class="breadcrumb-item"><a href="javascript:void(0)">เกี่ยวกับเรา</a>
+    </li>
+</ol>
+<br>
+<br>
+<ngx-spinner>
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <!-- Header -->
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row">
+                            <div class="col s8">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    เกี่ยวกับเรา
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+                        <div>
+                            <div class="row">
+                                <div class="col s8">
+                                    <citxt (cModel)="editModel.title = $event" [label]="'ชื่อ : '"
+                                        [data]="editModel.title || ''"></citxt>
+                                    <citxt (cModel)="editModel.titleEN = $event" [label]="'ชื่อ (ภาษาอังกฤษ): '"
+                                        [data]="editModel.titleEN || ''"></citxt>
+                                    <citxt (cModel)="editModel.address = $event" [label]="'ที่อยู่ : '"
+                                        [data]="editModel.address || ''"></citxt>
+                                    <citxt (cModel)="editModel.addressEN = $event" [label]="'ที่อยู่ (ภาษาอังกฤษ): '"
+                                        [data]="editModel.addressEN || ''"></citxt>
+                                    <citxt (cModel)="editModel.telephone = $event" [label]="'เบอร์โทรศัพท์ : '"
+                                        [data]="editModel.telephone || ''"></citxt>
+                                </div>
+                                <div class="col s4" style="padding-left: 50px !important;">
+                                    <div class="col s12">
+                                        <cds (cModel)="editModel.image = $event"
+                                            [label]="'รูปภาพโลโก้ (เลือกภาพ/วางภาพที่นี่)'"
+                                            [data]="[{ imageUrl: this.editModel.imageLogoUrl || '' }]"
+                                            [code]="'aboutUs'">
+                                        </cds>
+                                    </div>
+                                    <div class="col s12" style="color: red;padding-top: 20px;">
+                                        <span>*Maximum 10 MB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s8" >
+                                    <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '"
+                                        [data]="editModel.email || ''"></citxt>
+                                    <citxt (cModel)="editModel.site = $event" [label]="'เว็บ : '"
+                                        [data]="editModel.site || ''"></citxt>
+                                    <citxt (cModel)="editModel.facebook = $event" [label]="'facebook : '"
+                                        [data]="editModel.facebook || ''"></citxt>
+                                    <citxt (cModel)="editModel.lineOfficial = $event" [label]="'line : '"
+                                        [data]="editModel.lineOfficial || ''"></citxt>
+                                    <citxt (cModel)="editModel.youtube = $event" [label]="'youtube : '"
+                                        [data]="editModel.youtube || ''"></citxt>
+
+                                </div>
+                                <div class="col s4" style="margin-top: 20px !important; padding-left: 0px !important;">
+
+                                    <citxt (cModel)="editModel.latitude = $event" [label]="'ละติจูด : '"
+                                        [data]="editModel.latitude || ''"></citxt>
+                                    <citxt (cModel)="editModel.longitude = $event" [label]="'ลองจิจูด : '"
+                                        [data]="editModel.longitude || ''"></citxt>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <div class="card-panel" style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row">
+                            <div class="col s8">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    รายละเอียด
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+
+                        <div class="row">
+                            <div class="col s6">
+                                <ctxte (cModel)="editModel.description = $event" [label]="'รายละเอียด : '"
+                                    [data]="editModel.description || ''"></ctxte>
+                            </div>
+                            <div class="col s6" style="padding-left: 50px !important;">
+                                <div class="col s12">
+                                    <cds (cModel)="editModel.imageBg = $event"
+                                        [label]="'รูปภาพพื้นหลัง (เลือกภาพ/วางภาพที่นี่)'"
+                                        [data]="[{ imageUrl: this.editModel.imageBgUrl || '' }]" [code]="'aboutUs'"></cds>
+                                </div>
+                                <div class="col s12" style="color: red;padding-top: 20px;">
+                                    <span>*Maximum 10 MB</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col s12">
+        <div class="container">
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+
+                        <div class="row">
+                            <div class="col s12" style="text-align: center; margin-top: 10px;">
+                                <cbtn [hidden]="code != ''" (click)="create()" [label]="'บันทึก'" [color]="'blue'">
+                                </cbtn>
+                                <cbtn [hidden]="code == ''" (click)="update()" [label]="'บันทึก'" [color]="'blue'">
+                                </cbtn>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- END: Page Main-->
