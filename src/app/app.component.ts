@@ -476,7 +476,7 @@ export class AppComponent {
         isShow: this.category.reportNewsKeysearchPage,
       },
       // {
-      //   'name': 'รายงานคำค้นหาสารWe Build & Operate',
+      //   'name': 'รายงานคำค้นหาสารWe Tech Makers',
       //   'routing': '/report-knowledge-keysearch',
       //   'data': '',
       //   'type': 'N',
