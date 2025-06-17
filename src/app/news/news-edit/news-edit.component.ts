@@ -142,7 +142,7 @@ export class NewsEditComponent implements OnInit {
       let model: any = {};
       model = data;
 
-      if (this.editModel.gallery.length > 0) {
+      if (this.editModel?.gallery?.length > 0) {
         this.editModel.gallery.forEach(element => {
           element.reference = model.objectData.code;
           element.imageUrl = element.imageUrl;
@@ -150,7 +150,7 @@ export class NewsEditComponent implements OnInit {
         });
       }
 
-      if (this.editModel.galleryFile.length > 0) {
+      if (this.editModel?.galleryFile?.length > 0) {
         this.editModel.galleryFile.forEach(element => {
           element.reference = model.objectData.code;
           element.imageUrl = element.imageUrl;
@@ -238,7 +238,7 @@ export class NewsEditComponent implements OnInit {
     this.serviceProviderService.post(this.url.update, this.editModel).subscribe(data => {
 
       this.serviceProviderService.post(this.url.gallery.delete, this.editModel).subscribe(data => {
-        if (this.editModel.gallery.length > 0) {
+        if (this.editModel?.gallery?.length > 0) {
           this.editModel.gallery.forEach(element => {
             // element.code = this.editModel.code; //เพิ่ม set active false ทั้วหมด
             element.reference = this.editModel.code;
@@ -249,7 +249,7 @@ export class NewsEditComponent implements OnInit {
       }, err => { });
 
       this.serviceProviderService.post(this.url.galleryFile.delete, this.editModel).subscribe(data => {
-        if (this.editModel.galleryFile.length > 0) {
+        if (this.editModel?.galleryFile?.length > 0) {
           this.editModel.galleryFile.forEach(element => {
             // element.code = this.editModel.code; //เพิ่ม set active false ทั้วหมด
             element.reference = this.editModel.code;
