@@ -512,7 +512,7 @@ export class UserRoleEditComponent implements OnInit {
     this.editModel.employeePage = true;
     this.editModel.productPage = true;
     this.editModel.workProcessPage = true;
-
+    this.editModel.portfolioPage = true;
 
   }
 

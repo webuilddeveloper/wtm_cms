@@ -188,6 +188,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPhotoEditorModule } from 'ngx-photo-editor';
 import { PhotoEditorComponent } from "./component/photo-editor/photo-editor.component";
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PortfolioCriteriaComponent } from './portfolio/portfolio-criteria/portfolio-criteria.component';
+import { PortfolioEditComponent } from './portfolio/portfolio-edit/portfolio-edit.component';
+import { PortfolioListComponent } from './portfolio/portfolio-list/portfolio-list.component';
+import { PortfolioCategoryComponent } from './portfolio-category/portfolio-category.component';
+import { PortfolioCategoryCriteriaComponent } from './portfolio-category/portfolio-category-criteria/portfolio-category-criteria.component';
+import { PortfolioCategoryEditComponent } from './portfolio-category/portfolio-category-edit/portfolio-category-edit.component';
+import { PortfolioCategoryListComponent } from './portfolio-category/portfolio-category-list/portfolio-category-list.component';
 
 export const DateFormat = {
   display: {
@@ -343,7 +351,15 @@ export const DateFormat = {
     AllianceEditComponent,
     AllianceCriteriaComponent,
     DashboardV2Component,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    PortfolioComponent,
+    PortfolioCriteriaComponent,
+    PortfolioEditComponent,
+    PortfolioListComponent,
+    PortfolioCategoryComponent,
+    PortfolioCategoryCriteriaComponent,
+    PortfolioCategoryEditComponent,
+    PortfolioCategoryListComponent
   ],
   imports: [
     BrowserModule,

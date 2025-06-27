@@ -296,6 +296,15 @@ export class AppComponent {
         isShow: this.category.newsCategoryPage,
       },
       {
+        name: "หมวดหมู่ผลิตภัณฑ์",
+        routing: "/portfolio-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: true
+        // this.category.portfolioCategoryPage,
+      },
+      {
         name: "หมวดหมู่ผลงาน",
         routing: "/product-category",
         data: "",
@@ -323,12 +332,20 @@ export class AppComponent {
         isShow: this.category.newsPage,
       },
       {
-        name: "ผลงาน",
+        name: "ผลิตภัณฑ์",
         routing: "/product",
         data: "",
         type: "N",
         isActive: false,
         isShow: this.category.productPage,
+      },
+      {
+        name: "ผลงาน",
+        routing: "/portfolio",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.portfolioPage,
       },
       {
         name: "พนักงาน",
@@ -788,7 +805,6 @@ export class AppComponent {
                 .subscribe(
                   (data) => {
                     let categoryModel: any = data;
-
                     if (categoryModel.objectData != null)
                       localStorage.setItem(
                         "category",
@@ -950,6 +966,7 @@ export class AppComponent {
     localStorage.removeItem("productPage");
     localStorage.removeItem("employeePage");
     localStorage.removeItem("workProcessPage");
+    localStorage.removeItem("portfolioPage");
 
     window.location.href = "";
   }

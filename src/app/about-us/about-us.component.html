@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col s8" >
+                                <div class="col s8">
                                     <citxt (cModel)="editModel.email = $event" [label]="'อีเมล : '"
                                         [data]="editModel.email || ''"></citxt>
                                     <citxt (cModel)="editModel.site = $event" [label]="'เว็บ : '"
@@ -92,6 +92,220 @@
 
                     </div>
                 </div>
+
+
+            </section>
+
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <!-- Header -->
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row">
+                            <div class="col s8">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    รายละเอียด
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+                        <div class="row">
+
+                            <div class="col s6">
+                                <div class="col s12">
+                                    <ctxte (cModel)="editModel.description = $event" [label]="'รายละเอียด : '"
+                                        [data]="editModel.description || ''"></ctxte>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <div class="col s12">
+                                    <ctxte (cModel)="editModel.descriptionEN = $event"
+                                        [label]="'รายละเอียด (ภาษาอังกฤษ) : '" [data]="editModel.descriptionEN || ''">
+                                    </ctxte>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+
+
+            </section>
+
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <!-- Header -->
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row">
+                            <div class="col s8">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    วิสัยทัศน์
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+                        <div class="row">
+
+                            <div class="col s6">
+                                <div class="col s12">
+                                    <ctxte (cModel)="editModel.vision = $event" [label]="'วิสัยทัศน์ : '"
+                                        [data]="editModel.vision || ''"></ctxte>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <div class="col s12">
+                                    <ctxte (cModel)="editModel.visionEN = $event" [label]="'วิสัยทัศน์ (ภาษาอังกฤษ) : '"
+                                        [data]="editModel.visionEN || ''"></ctxte>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s6"></div>
+                        </div>
+
+
+
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+
+
+            </section>
+
+            <section class="users-list-wrapper section">
+                <div class="users-list-filter">
+
+                    <!-- Header -->
+                    <div class="card-panel"
+                        style="margin-bottom: 0px; background-color:lavender; vertical-align: text-top;">
+
+                        <div class="row">
+                            <div class="col s8">
+                                <i class="material-icons header-icon">
+                                    border_color
+                                </i>
+                                <span
+                                    style="position: relative; float:left; font-size: 1em; padding-left: 10px; padding-top: 10px;">
+                                    พันธกิจ
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-panel" style="margin-bottom: 0px; margin-top: 0px;">
+
+                        <!-- BEGIN: Do Something This Here -->
+                        <div class="row">
+
+                            <div class="col s6">
+                                <div class="col 12">
+                                    <citxt (cModel)="mission = $event" [data]="mission || ''" [label]="'พันธกิจ : '"></citxt>
+                                    <citxt (cModel)="missionEN = $event" [data]="missionEN || ''" [label]="'พันธกิจ (ภาษาอังกฤษ): '"></citxt>
+                                </div>
+                                <div class="col 12" style="text-align: right;">
+                                    <cbtn [label]="'เพิ่มพันธกิจ'" [color]="'light-blue'"  (click)="addMission()"></cbtn>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <div class="col s12">
+                                    <div class="row">
+
+                                        <div class="col s4">
+                                            <csop (cModel)="setPerPage($event)" [label]="'แสดง'"
+                                                [data]="paginationModel.itemsPerPageString"
+                                                [sources]="[{ value: '5', display: '5'},{ value: '10', display: '10'},{ value: '50', display: '50'},{ value: '100', display: '100'}]">
+                                            </csop>
+                                        </div>
+                                        <div class="col s8">
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="responsive-table">
+                                                <table id="users-list-datatable" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="w55">หัวข้อ</th>
+                                                            <th class="w20">ลบ</th>
+                                                            <!-- <th>ลบ</th> -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody cdkDropList (cdkDropListDropped)="drop($event)" class="tbody">
+                                                        <tr *ngFor="let i of messageInputSlice; let idx = index" cdkDrag class="tr">
+                                                            
+                                                            <!-- <td>{{((paginationModel.currentPage - 1) *
+                                                                paginationModel.itemsPerPage) + (idx + 1)}}
+                                                            </td> -->
+                                                            <td>
+                                                                <span>{{i.title}} <br>{{i.titleEN}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <cbtnd (click)="deleteItem(idx)"></cbtnd>
+                                                            </td>
+                                                            <!-- <td><cbtnd (click)="delete(i, idx)"></cbtnd></td> -->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <ul>
+                                                <li>{{paginationModel.textPage}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col s6">
+                                            <!-- <----- Pagination -->
+                                            <div style="text-align: right;">
+                                                <ul>
+                                                    <li *ngFor="let item of [] | paginate: paginationModel"></li>
+                                                </ul>
+                                                <pagination-controls (pageChange)="paginationModel.currentPage = $event"
+                                                    previousLabel="ก่อนหน้า" nextLabel="ถัดไป"></pagination-controls>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Do Something This Here -->
+
+                    </div>
+                </div>
+
+
             </section>
         </div>
     </div>

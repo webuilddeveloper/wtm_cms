@@ -104,6 +104,31 @@ export class ApiProviderService {
       delete: 'product/galleryFile/delete',
     }
   };
+
+  portfolio = {
+    create: 'portfolio/create',
+    read: 'portfolio/read',
+    update: 'portfolio/update',
+    delete: 'portfolio/delete',
+    category: {
+      create: 'portfolio/category/create',
+      read: 'portfolio/category/read',
+      update: 'portfolio/category/update',
+      delete: 'portfolio/category/delete',
+    },
+    gallery: {
+      create: 'portfolio/gallery/create',
+      read: 'portfolio/gallery/read',
+      update: 'portfolio/gallery/update',
+      delete: 'portfolio/gallery/delete',
+    },
+    galleryFile: {
+      create: 'portfolio/galleryFile/create',
+      read: 'portfolio/galleryFile/read',
+      update: 'portfolio/galleryFile/update',
+      delete: 'portfolio/galleryFile/delete',
+    }
+  };
   
   seminar = {
     create: 'seminar/create',

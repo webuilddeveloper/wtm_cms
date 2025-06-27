@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, KeyValueDiffer, OnInit, ViewEncapsulation } from '@angular/core';
 import { FileUploadService } from 'src/app/shared/file-upload.service';
 import { ServiceProviderService } from 'src/app/shared/service-provider.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-about-us',
@@ -15,6 +16,13 @@ export class AboutUsComponent implements OnInit {
   editModel: any = {};
   code: string = '';
   category: any = {};
+  mission: string = '';
+  missionEN: string = '';
+  messageInput: any = [];
+  messageInputSlice: any = [];
+  paginationModelDiffer: KeyValueDiffer<string, any>; // <----- Pagination
+  paginationModel: any = { itemsPerPage: 5, currentPage: 1, totalItems: 0, itemsPerPageString: '5' }; // <----- Pagination
+
 
   constructor(private fileuploadService: FileUploadService
     , private serviceProviderService: ServiceProviderService
@@ -57,6 +65,8 @@ export class AboutUsComponent implements OnInit {
     if (this.editModel.imageBg != undefined)
       this.editModel.imageBgUrl = this.editModel.imageBg[0].imageUrl;
 
+    this.editModel.missionList = this.messageInputSlice;
+
     this.spinner.show();
     this.serviceProviderService.post('aboutUs/create', this.editModel).subscribe(data => {
       let model: any = {}
@@ -90,6 +100,7 @@ export class AboutUsComponent implements OnInit {
       if (model.objectData.length > 0) {
         this.editModel = model.objectData[0];
         this.code = this.editModel.code;
+        this.messageInputSlice = model.objectData[0].missionList;
       }
 
       this.spinner.hide();
@@ -151,6 +162,57 @@ export class AboutUsComponent implements OnInit {
       this.spinner.hide();
       this.toastr.error(err, 'แจ้งเตือนระบบ', { timeOut: 2000 });
     });
+  }
+
+  setPerPage(param) {
+    this.paginationModel.currentPage = 1;
+    this.paginationModel.itemsPerPage = parseInt(param); // <----- Pagination
+    this.setLocalTable(this.paginationModel.currentPage - 1, this.paginationModel.itemsPerPage)
+  }
+
+  deleteItem(param) {
+    this.messageInput.splice(param + (this.paginationModel.itemsPerPage * (this.paginationModel.currentPage - 1)), 1);
+    this.setLocalTable((this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage, this.paginationModel.itemsPerPage + (this.paginationModel.currentPage - 1) * this.paginationModel.itemsPerPage);
+  }
+
+  setLocalTable(skip, limit) {
+    this.messageInputSlice = this.messageInput.slice(skip, limit);
+    this.paginationModel.totalItems = this.messageInput.length - 1;
+
+    if ((skip + this.paginationModel.itemsPerPage) > this.paginationModel.totalItems)
+      this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว';
+    else
+      this.paginationModel.textPage = 'แสดง ' + (skip + 1) + ' ถึง ' + (skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
+
+  }
+
+  addMission() {
+    let isValid = false;
+    if (this.mission == '') {
+      this.toastr.warning('กรุณาใส่พันธกิจ', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (this.missionEN == '') {
+      this.toastr.warning('กรุณาใส่พันธกิจ (ภาษาอังกฤษ)', 'แจ้งเตือนระบบ', { timeOut: 2000 });
+      isValid = true;
+    }
+
+    if (isValid)
+      return;
+
+    let model = {
+      title: this.mission,
+      titleEN: this.missionEN
+    };
+    this.messageInputSlice.push(model)
+
+    this.mission = "";
+    this.missionEN = "";
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.messageInputSlice, event.previousIndex, event.currentIndex);
   }
 
 }

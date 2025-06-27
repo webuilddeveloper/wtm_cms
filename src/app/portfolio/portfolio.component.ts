@@ -1,15 +1,16 @@
-import { ToastrService } from 'ngx-toastr';
+import { Component, KeyValueChanges, KeyValueDiffer, KeyValueDiffers, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ServiceProviderService } from './../shared/service-provider.service';
-import { Component, OnInit, Input, Output, EventEmitter, KeyValueDiffer, KeyValueDiffers, KeyValueChanges } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { ServiceProviderService } from '../shared/service-provider.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-portfolio',
+  templateUrl: './portfolio.component.html',
+  styleUrls: ['./portfolio.component.css']
 })
-export class ProductComponent implements OnInit {
+export class PortfolioComponent implements OnInit {
+
   model: any = [];
   listModel: string = '';
   isAdvanceSearch: boolean = true;
@@ -34,7 +35,7 @@ export class ProductComponent implements OnInit {
           this.permission = this.permission + "," + model[index].title;
       }
     }
-    this.serviceProviderService.SendIPAddress("ผลิตภัณฑ์");
+    this.serviceProviderService.SendIPAddress("ผลงาน");
     this.paginationModelDiffer = this.differs.find(this.paginationModel).create(); // <----- Pagination
   }
 

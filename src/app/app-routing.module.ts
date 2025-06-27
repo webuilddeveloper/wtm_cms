@@ -57,6 +57,8 @@ import { AboutCommentComponent } from "./about-comment/about-comment.component";
 import { AllianceComponent } from "./alliance/alliance.component";
 import { AllianceEditComponent } from "./alliance/alliance-edit/alliance-edit.component";
 import { DashboardV2Component } from "./dashboard-v2/dashboard-v2.component";
+import { PortfolioComponent } from "./portfolio/portfolio.component";
+import { PortfolioEditComponent } from "./portfolio/portfolio-edit/portfolio-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -128,6 +130,9 @@ const routes: Routes = [
   { path: "about-comment", component: AboutCommentComponent },
   { path: "alliance", component: AllianceComponent },
   { path: "alliance-edit/:code", component: AllianceEditComponent },
+
+  { path: "portfolio", component: PortfolioComponent },
+  { path: "portfolio-edit/:code", component: PortfolioEditComponent },
 ];
 
 @NgModule({
