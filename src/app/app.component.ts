@@ -121,6 +121,19 @@ export class AppComponent {
                   );
 
                 this.serviceProviderService
+                  .post("register/page/read", { title: "certificatePage" })
+                  .subscribe(
+                    (data) => {
+                      let model: any = data;
+                      localStorage.setItem(
+                        "certificatePage",
+                        JSON.stringify(model.objectData)
+                      );
+                    },
+                    (err) => {}
+                  );
+
+                this.serviceProviderService
                   .post("register/page/read", { title: "workProcessPage" })
                   .subscribe(
                     (data) => {
@@ -301,7 +314,7 @@ export class AppComponent {
         data: "",
         type: "N",
         isActive: false,
-        isShow: true
+        isShow: true,
         // this.category.portfolioCategoryPage,
       },
       {
@@ -319,6 +332,14 @@ export class AppComponent {
         type: "N",
         isActive: false,
         isShow: this.category.employeeCategoryPage,
+      },
+          {
+        name: "หมวดหมู่ใบรับรอง",
+        routing: "/certificate-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.certificateCategoryPage,
       },
     ];
 
@@ -362,6 +383,14 @@ export class AppComponent {
         type: "N",
         isActive: false,
         isShow: this.category.workProcessPage,
+      },
+         {
+        name: "ใบรับรอง",
+        routing: "/certificate",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.certificatePage,
       },
     ];
 
@@ -967,6 +996,7 @@ export class AppComponent {
     localStorage.removeItem("employeePage");
     localStorage.removeItem("workProcessPage");
     localStorage.removeItem("portfolioPage");
+    localStorage.removeItem("certificatePage");
 
     window.location.href = "";
   }

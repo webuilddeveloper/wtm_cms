@@ -59,6 +59,10 @@ import { AllianceEditComponent } from "./alliance/alliance-edit/alliance-edit.co
 import { DashboardV2Component } from "./dashboard-v2/dashboard-v2.component";
 import { PortfolioComponent } from "./portfolio/portfolio.component";
 import { PortfolioEditComponent } from "./portfolio/portfolio-edit/portfolio-edit.component";
+import { CertificateComponent } from "./certificate/certificate.component";
+import { CertificateEditComponent } from "./certificate/certificate-edit/certificate-edit.component";
+import { CertificateCategoryComponent } from "./certificate-category/certificate-category.component";
+import { CertificateCategoryEditComponent } from "./certificate-category/certificate-category-edit/certificate-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -133,6 +137,14 @@ const routes: Routes = [
 
   { path: "portfolio", component: PortfolioComponent },
   { path: "portfolio-edit/:code", component: PortfolioEditComponent },
+
+  { path: "certificate", component: CertificateComponent },
+  { path: "certificate-edit/:code", component: CertificateEditComponent },
+  { path: "certificate-category", component: CertificateCategoryComponent },
+  {
+    path: "certificate-category-edit/:code",
+    component: CertificateCategoryEditComponent,
+  },
 ];
 
 @NgModule({

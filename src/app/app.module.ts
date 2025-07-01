@@ -1,4 +1,4 @@
-import { DropzoneSingleFileComponent } from './component/dropzone-single-file/dropzone-single-file.component';
+import { DropzoneSingleFileComponent } from "./component/dropzone-single-file/dropzone-single-file.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -9,23 +9,23 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatInputModule } from "@angular/material/input";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSelectModule } from "@angular/material/select";
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatRadioModule } from "@angular/material/radio";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from "ngx-toastr";
 import { NgxDropzoneModule } from "ngx-dropzone";
-import { GalleryModule } from 'ng-gallery';
-import { LightboxModule } from 'ng-gallery/lightbox';
+import { GalleryModule } from "ng-gallery";
+import { LightboxModule } from "ng-gallery/lightbox";
 import {
   NgxMatDatetimePickerModule,
-  NgxMatTimepickerModule
+  NgxMatTimepickerModule,
 } from "ngx-mat-datetime-picker";
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from "@angular/material/icon";
 import {
   MatMomentDateModule,
   MomentDateModule,
   MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from "@angular/material-moment-adapter";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -37,11 +37,11 @@ import { FileUploadComponent } from "./demo/file-upload/file-upload.component";
 import {
   ModalComponent,
   ModalDialogComponent,
-  ModalAlertComponent
+  ModalAlertComponent,
 } from "./demo/modal/modal.component";
 import { SpinnerComponent } from "./demo/spinner/spinner.component";
 import { ToastComponent } from "./demo/toast/toast.component";
-import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxPaginationModule } from "ngx-pagination";
 import { NewsComponent } from "./news/news.component";
 import { NewsCriteriaComponent } from "./news/news-criteria/news-criteria.component";
 import { NewsEditComponent } from "./news/news-edit/news-edit.component";
@@ -87,123 +87,131 @@ import { ButtonLargeComponent } from "./component/button-large/button-large.comp
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { MultiSelectedOptionComponent } from "./component/multi-selected-option/multi-selected-option.component";
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { TextEditorComponent } from './component/text-editor/text-editor.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { RotationComponent } from './rotation/rotation.component';
-import { RotationCriteriaComponent } from './rotation/rotation-criteria/rotation-criteria.component';
-import { RotationListComponent } from './rotation/rotation-list/rotation-list.component';
-import { RotationEditComponent } from './rotation/rotation-edit/rotation-edit.component';
-import { InputNumberComponent } from './component/input-number/input-number.component';
-import { NewsCategoryComponent } from './news-category/news-category.component';
-import { NewsCategoryCriteriaComponent } from './news-category/news-category-criteria/news-category-criteria.component';
-import { NewsCategoryListComponent } from './news-category/news-category-list/news-category-list.component';
-import { NewsCategoryEditComponent } from './news-category/news-category-edit/news-category-edit.component';
-import { MemberComponent } from './member/member.component';
-import { MemberListComponent } from './member/member-list/member-list.component';
-import { MemberCriteriaComponent } from './member/member-criteria/member-criteria.component';
-import { MemberEditComponent } from './member/member-edit/member-edit.component';
-import { UserRoleComponent } from './user-role/user-role.component';
-import { UserRoleCriteriaComponent } from './user-role/user-role-criteria/user-role-criteria.component';
-import { UserRoleEditComponent } from './user-role/user-role-edit/user-role-edit.component';
-import { UserRoleListComponent } from './user-role/user-role-list/user-role-list.component';
-import { LogoComponent } from './logo/logo.component';
-import { LogoEditComponent } from './logo/logo-edit/logo-edit.component';
-import { LogoListComponent } from './logo/logo-list/logo-list.component';
-import { LogoCriteriaComponent } from './logo/logo-criteria/logo-criteria.component';
-import { MemberMobileComponent } from './member-mobile/member-mobile.component';
-import { MemberMobileListComponent } from './member-mobile/member-mobile-list/member-mobile-list.component';
-import { MemberMobileEditComponent } from './member-mobile/member-mobile-edit/member-mobile-edit.component';
-import { MemberMobileCriteriaComponent } from './member-mobile/member-mobile-criteria/member-mobile-criteria.component';
-import { ReportNewsComponent } from './report-news/report-news.component';
-import { ReportNewsCriteriaComponent } from './report-news/report-news-criteria/report-news-criteria.component';
-import { ReportNewsListComponent } from './report-news/report-news-list/report-news-list.component';
-import { ReportReporterComponent } from './report-reporter/report-reporter.component';
-import { ReportReporterCriteriaComponent } from './report-reporter/report-reporter-criteria/report-reporter-criteria.component';
-import { ReportReporterListComponent } from './report-reporter/report-reporter-list/report-reporter-list.component';
-import { ReportAboutUsComponent } from './report-about-us/report-about-us.component';
-import { ReportAboutUsCriteriaComponent } from './report-about-us/report-about-us-criteria/report-about-us-criteria.component';
-import { ReportAboutUsListComponent } from './report-about-us/report-about-us-list/report-about-us-list.component';
-import { ComingSoonComponent } from './coming-soon/coming-soon.component';
-import { ComingSoonCriteriaComponent } from './coming-soon/coming-soon-criteria/coming-soon-criteria.component';
-import { ComingSoonListComponent } from './coming-soon/coming-soon-list/coming-soon-list.component';
-import { ComingSoonEditComponent } from './coming-soon/coming-soon-edit/coming-soon-edit.component';
-import { ConfigVersionComponent } from './config-version/config-version.component';
+import { AngularEditorModule } from "@kolkov/angular-editor";
+import { TextEditorComponent } from "./component/text-editor/text-editor.component";
+import { CKEditorModule } from "@ckeditor/ckeditor5-angular";
+import { RotationComponent } from "./rotation/rotation.component";
+import { RotationCriteriaComponent } from "./rotation/rotation-criteria/rotation-criteria.component";
+import { RotationListComponent } from "./rotation/rotation-list/rotation-list.component";
+import { RotationEditComponent } from "./rotation/rotation-edit/rotation-edit.component";
+import { InputNumberComponent } from "./component/input-number/input-number.component";
+import { NewsCategoryComponent } from "./news-category/news-category.component";
+import { NewsCategoryCriteriaComponent } from "./news-category/news-category-criteria/news-category-criteria.component";
+import { NewsCategoryListComponent } from "./news-category/news-category-list/news-category-list.component";
+import { NewsCategoryEditComponent } from "./news-category/news-category-edit/news-category-edit.component";
+import { MemberComponent } from "./member/member.component";
+import { MemberListComponent } from "./member/member-list/member-list.component";
+import { MemberCriteriaComponent } from "./member/member-criteria/member-criteria.component";
+import { MemberEditComponent } from "./member/member-edit/member-edit.component";
+import { UserRoleComponent } from "./user-role/user-role.component";
+import { UserRoleCriteriaComponent } from "./user-role/user-role-criteria/user-role-criteria.component";
+import { UserRoleEditComponent } from "./user-role/user-role-edit/user-role-edit.component";
+import { UserRoleListComponent } from "./user-role/user-role-list/user-role-list.component";
+import { LogoComponent } from "./logo/logo.component";
+import { LogoEditComponent } from "./logo/logo-edit/logo-edit.component";
+import { LogoListComponent } from "./logo/logo-list/logo-list.component";
+import { LogoCriteriaComponent } from "./logo/logo-criteria/logo-criteria.component";
+import { MemberMobileComponent } from "./member-mobile/member-mobile.component";
+import { MemberMobileListComponent } from "./member-mobile/member-mobile-list/member-mobile-list.component";
+import { MemberMobileEditComponent } from "./member-mobile/member-mobile-edit/member-mobile-edit.component";
+import { MemberMobileCriteriaComponent } from "./member-mobile/member-mobile-criteria/member-mobile-criteria.component";
+import { ReportNewsComponent } from "./report-news/report-news.component";
+import { ReportNewsCriteriaComponent } from "./report-news/report-news-criteria/report-news-criteria.component";
+import { ReportNewsListComponent } from "./report-news/report-news-list/report-news-list.component";
+import { ReportReporterComponent } from "./report-reporter/report-reporter.component";
+import { ReportReporterCriteriaComponent } from "./report-reporter/report-reporter-criteria/report-reporter-criteria.component";
+import { ReportReporterListComponent } from "./report-reporter/report-reporter-list/report-reporter-list.component";
+import { ReportAboutUsComponent } from "./report-about-us/report-about-us.component";
+import { ReportAboutUsCriteriaComponent } from "./report-about-us/report-about-us-criteria/report-about-us-criteria.component";
+import { ReportAboutUsListComponent } from "./report-about-us/report-about-us-list/report-about-us-list.component";
+import { ComingSoonComponent } from "./coming-soon/coming-soon.component";
+import { ComingSoonCriteriaComponent } from "./coming-soon/coming-soon-criteria/coming-soon-criteria.component";
+import { ComingSoonListComponent } from "./coming-soon/coming-soon-list/coming-soon-list.component";
+import { ComingSoonEditComponent } from "./coming-soon/coming-soon-edit/coming-soon-edit.component";
+import { ConfigVersionComponent } from "./config-version/config-version.component";
 import { PartnerComponent } from "./partner/partner.component";
 import { PartnerListComponent } from "./partner/partner-list/partner-list.component";
 import { PartnerCriteriaComponent } from "./partner/partner-criteria/partner-criteria.component";
 import { PartnerEditComponent } from "./partner/partner-edit/partner-edit.component";
 
-import { CmsVisitorComponent } from './cms-visitor/cms-visitor.component';
-import { CmsVisitorEditComponent } from './cms-visitor/cms-visitor-edit/cms-visitor-edit.component';
-import { CmsVisitorListComponent } from './cms-visitor/cms-visitor-list/cms-visitor-list.component';
-import { CmsVisitorCriteriaComponent } from './cms-visitor/cms-visitor-criteria/cms-visitor-criteria.component';
-import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { BoxApproveMemberComponent } from './component/box-approve-member/box-approve-member.component';
+import { CmsVisitorComponent } from "./cms-visitor/cms-visitor.component";
+import { CmsVisitorEditComponent } from "./cms-visitor/cms-visitor-edit/cms-visitor-edit.component";
+import { CmsVisitorListComponent } from "./cms-visitor/cms-visitor-list/cms-visitor-list.component";
+import { CmsVisitorCriteriaComponent } from "./cms-visitor/cms-visitor-criteria/cms-visitor-criteria.component";
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import { BoxApproveMemberComponent } from "./component/box-approve-member/box-approve-member.component";
 
-import { WebsiteVisitorComponent } from './website-visitor/website-visitor.component';
-import { WebsiteVisitorEditComponent } from './website-visitor/website-visitor-edit/website-visitor-edit.component';
-import { WebsiteVisitorListComponent } from './website-visitor/website-visitor-list/website-visitor-list.component';
-import { WebsiteVisitorCriteriaComponent } from './website-visitor/website-visitor-criteria/website-visitor-criteria.component';
-import { WebsiteVisitorGuestComponent } from './website-visitor-guest/website-visitor-guest.component';
-import { WebsiteVisitorGuestEditComponent } from './website-visitor-guest/website-visitor-guest-edit/website-visitor-guest-edit.component';
-import { WebsiteVisitorGuestCriteriaComponent } from './website-visitor-guest/website-visitor-guest-criteria/website-visitor-guest-criteria.component';
-import { WebsiteVisitorGuestListComponent } from './website-visitor-guest/website-visitor-guest-list/website-visitor-guest-list.component';
-import { ProductComponent } from './product/product.component';
-import { ProductCriteriaComponent } from './product/product-criteria/product-criteria.component';
-import { ProductListComponent } from './product/product-list/product-list.component';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
-import { ProductCategoryComponent } from './product-category/product-category.component';
-import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
-import { ProductCategoryEditComponent } from './product-category/product-category-edit/product-category-edit.component';
-import { ProductCategoryCriteriaComponent } from './product-category/product-category-criteria/product-category-criteria.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
-import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
-import { EmployeeCriteriaComponent } from './employee/employee-criteria/employee-criteria.component';
-import { EmployeeCategoryComponent } from './employee-category/employee-category.component';
-import { EmployeeCategoryListComponent } from './employee-category/employee-category-list/employee-category-list.component';
-import { EmployeeCategoryEditComponent } from './employee-category/employee-category-edit/employee-category-edit.component';
-import { EmployeeCategoryCriteriaComponent } from './employee-category/employee-category-criteria/employee-category-criteria.component';
-import { WorkProcessComponent } from './work-process/work-process.component';
-import { WorkProcessListComponent } from './work-process/work-process-list/work-process-list.component';
-import { WorkProcessEditComponent } from './work-process/work-process-edit/work-process-edit.component';
-import { WorkProcessCriteriaComponent } from './work-process/work-process-criteria/work-process-criteria.component';
-import { WorkProcessCategoryComponent } from './work-process-category/work-process-category.component';
-import { WorkProcessCategoryListComponent } from './work-process-category/work-process-category-list/work-process-category-list.component';
-import { WorkProcessCategoryEditComponent } from './work-process-category/work-process-category-edit/work-process-category-edit.component';
-import { WorkProcessCategoryCriteriaComponent } from './work-process-category/work-process-category-criteria/work-process-category-criteria.component';
+import { WebsiteVisitorComponent } from "./website-visitor/website-visitor.component";
+import { WebsiteVisitorEditComponent } from "./website-visitor/website-visitor-edit/website-visitor-edit.component";
+import { WebsiteVisitorListComponent } from "./website-visitor/website-visitor-list/website-visitor-list.component";
+import { WebsiteVisitorCriteriaComponent } from "./website-visitor/website-visitor-criteria/website-visitor-criteria.component";
+import { WebsiteVisitorGuestComponent } from "./website-visitor-guest/website-visitor-guest.component";
+import { WebsiteVisitorGuestEditComponent } from "./website-visitor-guest/website-visitor-guest-edit/website-visitor-guest-edit.component";
+import { WebsiteVisitorGuestCriteriaComponent } from "./website-visitor-guest/website-visitor-guest-criteria/website-visitor-guest-criteria.component";
+import { WebsiteVisitorGuestListComponent } from "./website-visitor-guest/website-visitor-guest-list/website-visitor-guest-list.component";
+import { ProductComponent } from "./product/product.component";
+import { ProductCriteriaComponent } from "./product/product-criteria/product-criteria.component";
+import { ProductListComponent } from "./product/product-list/product-list.component";
+import { ProductEditComponent } from "./product/product-edit/product-edit.component";
+import { ProductCategoryComponent } from "./product-category/product-category.component";
+import { ProductCategoryListComponent } from "./product-category/product-category-list/product-category-list.component";
+import { ProductCategoryEditComponent } from "./product-category/product-category-edit/product-category-edit.component";
+import { ProductCategoryCriteriaComponent } from "./product-category/product-category-criteria/product-category-criteria.component";
+import { EmployeeComponent } from "./employee/employee.component";
+import { EmployeeListComponent } from "./employee/employee-list/employee-list.component";
+import { EmployeeEditComponent } from "./employee/employee-edit/employee-edit.component";
+import { EmployeeCriteriaComponent } from "./employee/employee-criteria/employee-criteria.component";
+import { EmployeeCategoryComponent } from "./employee-category/employee-category.component";
+import { EmployeeCategoryListComponent } from "./employee-category/employee-category-list/employee-category-list.component";
+import { EmployeeCategoryEditComponent } from "./employee-category/employee-category-edit/employee-category-edit.component";
+import { EmployeeCategoryCriteriaComponent } from "./employee-category/employee-category-criteria/employee-category-criteria.component";
+import { WorkProcessComponent } from "./work-process/work-process.component";
+import { WorkProcessListComponent } from "./work-process/work-process-list/work-process-list.component";
+import { WorkProcessEditComponent } from "./work-process/work-process-edit/work-process-edit.component";
+import { WorkProcessCriteriaComponent } from "./work-process/work-process-criteria/work-process-criteria.component";
+import { WorkProcessCategoryComponent } from "./work-process-category/work-process-category.component";
+import { WorkProcessCategoryListComponent } from "./work-process-category/work-process-category-list/work-process-category-list.component";
+import { WorkProcessCategoryEditComponent } from "./work-process-category/work-process-category-edit/work-process-category-edit.component";
+import { WorkProcessCategoryCriteriaComponent } from "./work-process-category/work-process-category-criteria/work-process-category-criteria.component";
 import { OfficeActivitiesComponent } from "./office-activities/office-activities.component";
 import { OfficeActivitiesListComponent } from "./office-activities/office-activities-list/office-activities-list.component";
 import { OfficeActivitiesCriteriaComponent } from "./office-activities/office-activities-criteria/office-activities-criteria.component";
 import { OfficeActivitiesEditComponent } from "./office-activities/office-activities-edit/office-activities-edit.component";
 import { AboutCommentComponent } from "./about-comment/about-comment.component";
 import { AboutCommentListComponent } from "./about-comment/about-comment-list/about-comment-list.component";
-import { AllianceComponent } from './alliance/alliance.component';
-import { AllianceListComponent } from './alliance/alliance-list/alliance-list.component';
-import { AllianceEditComponent } from './alliance/alliance-edit/alliance-edit.component';
-import { AllianceCriteriaComponent } from './alliance/alliance-criteria/alliance-criteria.component';
-import { DashboardV2Component } from './dashboard-v2/dashboard-v2.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxPhotoEditorModule } from 'ngx-photo-editor';
+import { AllianceComponent } from "./alliance/alliance.component";
+import { AllianceListComponent } from "./alliance/alliance-list/alliance-list.component";
+import { AllianceEditComponent } from "./alliance/alliance-edit/alliance-edit.component";
+import { AllianceCriteriaComponent } from "./alliance/alliance-criteria/alliance-criteria.component";
+import { DashboardV2Component } from "./dashboard-v2/dashboard-v2.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxPhotoEditorModule } from "ngx-photo-editor";
 import { PhotoEditorComponent } from "./component/photo-editor/photo-editor.component";
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { PortfolioComponent } from './portfolio/portfolio.component';
-import { PortfolioCriteriaComponent } from './portfolio/portfolio-criteria/portfolio-criteria.component';
-import { PortfolioEditComponent } from './portfolio/portfolio-edit/portfolio-edit.component';
-import { PortfolioListComponent } from './portfolio/portfolio-list/portfolio-list.component';
-import { PortfolioCategoryComponent } from './portfolio-category/portfolio-category.component';
-import { PortfolioCategoryCriteriaComponent } from './portfolio-category/portfolio-category-criteria/portfolio-category-criteria.component';
-import { PortfolioCategoryEditComponent } from './portfolio-category/portfolio-category-edit/portfolio-category-edit.component';
-import { PortfolioCategoryListComponent } from './portfolio-category/portfolio-category-list/portfolio-category-list.component';
+import { DragDropModule } from "@angular/cdk/drag-drop";
+import { PortfolioComponent } from "./portfolio/portfolio.component";
+import { PortfolioCriteriaComponent } from "./portfolio/portfolio-criteria/portfolio-criteria.component";
+import { PortfolioEditComponent } from "./portfolio/portfolio-edit/portfolio-edit.component";
+import { PortfolioListComponent } from "./portfolio/portfolio-list/portfolio-list.component";
+import { PortfolioCategoryComponent } from "./portfolio-category/portfolio-category.component";
+import { PortfolioCategoryCriteriaComponent } from "./portfolio-category/portfolio-category-criteria/portfolio-category-criteria.component";
+import { PortfolioCategoryEditComponent } from "./portfolio-category/portfolio-category-edit/portfolio-category-edit.component";
+import { PortfolioCategoryListComponent } from "./portfolio-category/portfolio-category-list/portfolio-category-list.component";
+import { CertificateComponent } from "./certificate/certificate.component";
+import { CertificateListComponent } from "./certificate/certificate-list/certificate-list.component";
+import { CertificateEditComponent } from "./certificate/certificate-edit/certificate-edit.component";
+import { CertificateCriteriaComponent } from "./certificate/certificate-criteria/certificate-criteria.component";
+import { CertificateCategoryComponent } from "./certificate-category/certificate-category.component";
+import { CertificateCategoryListComponent } from "./certificate-category/certificate-category-list/certificate-category-list.component";
+import { CertificateCategoryEditComponent } from "./certificate-category/certificate-category-edit/certificate-category-edit.component";
+import { CertificateCategoryCriteriaComponent } from "./certificate-category/certificate-category-criteria/certificate-category-criteria.component";
 
 export const DateFormat = {
   display: {
     dateInput: "MM/DD/YYYY",
     monthYearLabel: "MMMM YYYY",
     dateA11yLabel: "MM/DD/YYYY",
-    monthYearA11yLabel: "MMMM YYYY"
-  }
+    monthYearA11yLabel: "MMMM YYYY",
+  },
 };
 @NgModule({
   declarations: [
@@ -359,7 +367,15 @@ export const DateFormat = {
     PortfolioCategoryComponent,
     PortfolioCategoryCriteriaComponent,
     PortfolioCategoryEditComponent,
-    PortfolioCategoryListComponent
+    PortfolioCategoryListComponent,
+    CertificateComponent,
+    CertificateListComponent,
+    CertificateEditComponent,
+    CertificateCriteriaComponent,
+    CertificateCategoryComponent,
+    CertificateCategoryListComponent,
+    CertificateCategoryEditComponent,
+    CertificateCategoryCriteriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -393,10 +409,10 @@ export const DateFormat = {
     LightboxModule,
     NgbModule,
     NgxPhotoEditorModule,
-    DragDropModule
+    DragDropModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: "th-TH" }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
