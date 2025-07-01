@@ -34,7 +34,7 @@ export class CertificateEditComponent implements OnInit {
   momentCriteriaModel: any = {};
   imageFile: string = "";
   code: any;
-  title = "เพิ่มข้อมูลพนักงาน";
+  title = "เพิ่มข้อมูลใบรับรอง";
   organization: any; // <----- Organization เก็บค่า องกรค์
   category: any; // <----- Category เพื่ออ่านสิทธิ์ Organization ของ User ว่าสามารถเห็นระดับไหน
   permission: any; // <----- Permission ส่งเข้า Read เพื่อให้เห็นเฉพาะ Category ที่ถูกเซตไว้กับ Role สรุปคือ (Category Code List)
@@ -107,7 +107,7 @@ export class CertificateEditComponent implements OnInit {
       this.code = model.code;
 
       if (this.code != "") {
-        this.title = "แก้ไขข้อมูลพนักงาน";
+        this.title = "แก้ไขข้อมูลใบรับรอง";
         this.read();
       } else {
         this.readCategory(this.editModel.language);
@@ -128,9 +128,9 @@ export class CertificateEditComponent implements OnInit {
     // this.editModel.imageUrl = this.editModel.image[0].imageUrl;
 
     //fileUrl create
-    if (this.editModel.file != undefined) {
-      if (this.editModel.file.length > 0)
-        this.editModel.fileUrl = this.editModel.file[0].fileUrl;
+    if (this.editModel.galleryFile != undefined) {
+      if (this.editModel.galleryFile.length > 0)
+        this.editModel.fileUrl = this.editModel.galleryFile[0].imageUrl;
       else this.editModel.fileUrl = "";
     }
 
@@ -233,9 +233,9 @@ export class CertificateEditComponent implements OnInit {
     }
 
     //fileUrl update
-    if (this.editModel.file != undefined) {
-      if (this.editModel.file.length > 0) {
-        this.editModel.fileUrl = this.editModel.file[0].fileUrl;
+    if (this.editModel.galleryFile != undefined) {
+      if (this.editModel.galleryFile.length > 0) {
+        this.editModel.fileUrl = this.editModel.galleryFile[0].imageUrl;
       } else {
         this.editModel.fileUrl = "";
       }
