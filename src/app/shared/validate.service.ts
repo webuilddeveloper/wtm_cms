@@ -21,10 +21,10 @@ export class ValidateService {
       isValid = true;
     }
 
-    // if (param.category == '') {
-    //   this.toastr.warning('กรุณาเลือกหมวดหมู่', 'แจ้งเตือนระบบ', { timeOut: 1000 });
-    //   isValid = true;
-    // }
+    if (param.category == '') {
+      this.toastr.warning('กรุณาเลือกหมวดหมู่', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+      isValid = true;
+    }
 
     return isValid;
   }
@@ -45,10 +45,10 @@ export class ValidateService {
       }  
     }
     
-    // if (param.category == '') {
-    //   this.toastr.warning('กรุณาเลือกหมวดหมู่', 'แจ้งเตือนระบบ', { timeOut: 1000 });
-    //   isValid = true;
-    // }
+    if (param.category == '') {
+      this.toastr.warning('กรุณาเลือกหมวดหมู่', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+      isValid = true;
+    }
 
     return isValid;
   }

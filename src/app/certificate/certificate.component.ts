@@ -1,16 +1,15 @@
-import { Component, KeyValueChanges, KeyValueDiffer, KeyValueDiffers, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { ServiceProviderService } from '../shared/service-provider.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ServiceProviderService } from './../shared/service-provider.service';
+import { Component, OnInit, Input, Output, EventEmitter, KeyValueDiffer, KeyValueDiffers, KeyValueChanges } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.css']
+  selector: 'app-certificate',
+  templateUrl: './certificate.component.html',
+  styleUrls: ['./certificate.component.css']
 })
-export class PortfolioComponent implements OnInit {
-
+export class CertificateComponent implements OnInit {
   model: any = [];
   listModel: string = '';
   isAdvanceSearch: boolean = true;
@@ -24,9 +23,9 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (localStorage.getItem('portfolioPage') != null) {
+    if (localStorage.getItem('certificatePage') != null) {
       let model: any = [];
-      model = JSON.parse(localStorage.getItem('portfolioPage'));
+      model = JSON.parse(localStorage.getItem('certificatePage'));
 
       for (let index = 0; index < model.length; index++) {
         if (index == 0)
@@ -35,7 +34,7 @@ export class PortfolioComponent implements OnInit {
           this.permission = this.permission + "," + model[index].title;
       }
     }
-    this.serviceProviderService.SendIPAddress("ผลงาน");
+    this.serviceProviderService.SendIPAddress("พนักงาน");
     this.paginationModelDiffer = this.differs.find(this.paginationModel).create(); // <----- Pagination
   }
 
@@ -53,7 +52,7 @@ export class PortfolioComponent implements OnInit {
       this.criteriaModel.center = userCenter;
     }
 
-    this.serviceProviderService.post('portfolio/read', this.criteriaModel).subscribe(data => {
+    this.serviceProviderService.post('certificate/read', this.criteriaModel).subscribe(data => {
       setTimeout(() => {
         let model: any = {};
         model = data;

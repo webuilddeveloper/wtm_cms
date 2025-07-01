@@ -10,14 +10,13 @@ import { ValidateService } from "src/app/shared/validate.service";
 import { OrganizationService } from "src/app/shared/organization.service";
 import { PermissionService } from "src/app/shared/permission.service";
 import { ExcelService } from "src/app/shared/excel.service";
-import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
-  selector: "app-news-edit",
-  templateUrl: "./news-edit.component.html",
-  styleUrls: ["./news-edit.component.css"],
+  selector: "app-certificate-edit",
+  templateUrl: "./certificate-edit.component.html",
+  styleUrls: ["./certificate-edit.component.css"],
 })
-export class NewsEditComponent implements OnInit {
+export class CertificateEditComponent implements OnInit {
   Editor = ClassicEditor;
   listCategory: any = [];
   editModel: any = {
@@ -29,14 +28,13 @@ export class NewsEditComponent implements OnInit {
   };
   listCenter: any = [];
   commentList: any = [];
-  productList: any = [];
   commentModel: any;
   hiddenBtnComment: boolean = false;
   hiddenComment: boolean = true;
   momentCriteriaModel: any = {};
   imageFile: string = "";
   code: any;
-  title = "เพิ่มข้อมูลข่าวประชาสัมพันธ์";
+  title = "เพิ่มข้อมูลใบรับรอง";
   organization: any; // <----- Organization เก็บค่า องกรค์
   category: any; // <----- Category เพื่ออ่านสิทธิ์ Organization ของ User ว่าสามารถเห็นระดับไหน
   permission: any; // <----- Permission ส่งเข้า Read เพื่อให้เห็นเฉพาะ Category ที่ถูกเซตไว้กับ Role สรุปคือ (Category Code List)
@@ -52,7 +50,6 @@ export class NewsEditComponent implements OnInit {
   isReadOGLv2: boolean; // <----- Organization
   isReadOGLv3: boolean; // <----- Organization
   isReadOGLv4: boolean; // <----- Organization
-  isSortImage: boolean = true;
 
   url: any = {};
 
@@ -63,7 +60,6 @@ export class NewsEditComponent implements OnInit {
 
   constructor(
     private apiProviderService: ApiProviderService,
-    private validService: ValidateService,
     private organizationService: OrganizationService,
     private permissionService: PermissionService,
     private serviceProviderService: ServiceProviderService,
@@ -74,44 +70,44 @@ export class NewsEditComponent implements OnInit {
     private activetedRoute: ActivatedRoute
   ) {
     this.url = {
-      create: this.apiProviderService.news.create,
-      read: this.apiProviderService.news.read,
-      update: this.apiProviderService.news.update,
-      delete: this.apiProviderService.news.delete,
+      create: this.apiProviderService.certificate.create,
+      read: this.apiProviderService.certificate.read,
+      update: this.apiProviderService.certificate.update,
+      delete: this.apiProviderService.certificate.delete,
       category: {
-        create: this.apiProviderService.news.category.create,
-        read: this.apiProviderService.news.category.read,
-        update: this.apiProviderService.news.category.update,
-        delete: this.apiProviderService.news.category.delete,
+        create: this.apiProviderService.certificate.category.create,
+        read: this.apiProviderService.certificate.category.read,
+        update: this.apiProviderService.certificate.category.update,
+        delete: this.apiProviderService.certificate.category.delete,
       },
       gallery: {
-        create: this.apiProviderService.news.gallery.create,
-        read: this.apiProviderService.news.gallery.read,
-        update: this.apiProviderService.news.gallery.update,
-        delete: this.apiProviderService.news.gallery.delete,
+        create: this.apiProviderService.certificate.gallery.create,
+        read: this.apiProviderService.certificate.gallery.read,
+        update: this.apiProviderService.certificate.gallery.update,
+        delete: this.apiProviderService.certificate.gallery.delete,
       },
       galleryFile: {
-        create: this.apiProviderService.news.galleryFile.create,
-        read: this.apiProviderService.news.galleryFile.read,
-        update: this.apiProviderService.news.galleryFile.update,
-        delete: this.apiProviderService.news.galleryFile.delete,
+        create: this.apiProviderService.certificate.galleryFile.create,
+        read: this.apiProviderService.certificate.galleryFile.read,
+        update: this.apiProviderService.certificate.galleryFile.update,
+        delete: this.apiProviderService.certificate.galleryFile.delete,
       },
     };
   }
 
   ngOnInit(): void {
-    this.permission = this.permissionService.readPermission("newsPage");
-    this.permissionList = this.permissionService.readLocalStorage("newsPage");
+    this.permission = this.permissionService.readPermission("certificatePage");
+    this.permissionList =
+      this.permissionService.readLocalStorage("certificatePage");
     this.organization = this.permissionService.readLocalStorage("organization");
     this.category = this.permissionService.readLocalStorage("category");
 
     this.activetedRoute.queryParams.subscribe((params) => {
       let model: any = this.activetedRoute.snapshot.params;
       this.code = model.code;
-      this.readProduct();
 
       if (this.code != "") {
-        this.title = "แก้ไขข้อมูลข่าวประชาสัมพันธ์";
+        this.title = "แก้ไขข้อมูลใบรับรอง";
         this.read();
       } else {
         this.readCategory(this.editModel.language);
@@ -121,28 +117,25 @@ export class NewsEditComponent implements OnInit {
   }
 
   create() {
-    this.spinner.show();
-    this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+    if (this.editModel.category == "") {
+      this.toastr.warning("กรุณาเลือกหมวดหมู่", "แจ้งเตือนระบบ", {
+        timeOut: 1000,
+      });
+      return;
+    }
 
-    if (this.editModel?.imageB.length > 0)
-      this.editModel.imageBanner = this.editModel.imageB[0].imageUrl;
+    this.spinner.show();
+    // this.editModel.imageUrl = this.editModel.image[0].imageUrl;
 
     //fileUrl create
-    if (this.editModel?.file != undefined) {
-      if (this.editModel.file.length > 0)
-        this.editModel.fileUrl = this.editModel.file[0].fileUrl;
+    if (this.editModel.galleryFile != undefined) {
+      if (this.editModel.galleryFile.length > 0)
+        this.editModel.fileUrl = this.editModel.galleryFile[0].imageUrl;
       else this.editModel.fileUrl = "";
     }
 
     // <----- Organization
-    this.editModel = this.organizationService.filterSelected(
-      this.editModel,
-      this.lv0Category,
-      this.lv1Category,
-      this.lv2Category,
-      this.lv3Category,
-      this.lv4Category
-    );
+    // this.editModel = this.organizationService.filterSelected(this.editModel, this.lv0Category, this.lv1Category, this.lv2Category, this.lv3Category, this.lv4Category);
     // <----- Organization
 
     this.serviceProviderService.post(this.url.create, this.editModel).subscribe(
@@ -150,20 +143,7 @@ export class NewsEditComponent implements OnInit {
         let model: any = {};
         model = data;
 
-        if (this.editModel?.gallery?.length > 0) {
-          this.editModel.gallery.forEach((element) => {
-            element.reference = model.objectData.code;
-            element.imageUrl = element.imageUrl;
-            this.serviceProviderService
-              .post(this.url.gallery.create, element)
-              .subscribe(
-                (data) => {},
-                (err) => {}
-              );
-          });
-        }
-
-        if (this.editModel?.galleryFile?.length > 0) {
+        if (this.editModel.galleryFile.length > 0) {
           this.editModel.galleryFile.forEach((element) => {
             element.reference = model.objectData.code;
             element.imageUrl = element.imageUrl;
@@ -177,6 +157,7 @@ export class NewsEditComponent implements OnInit {
               );
           });
         }
+
         this.isSaveSuccess = true;
         this.spinner.hide();
         this.toastr.success("บันทึกข้อมูลสำเร็จ", "แจ้งเตือนระบบ", {
@@ -218,7 +199,7 @@ export class NewsEditComponent implements OnInit {
             this.editModel.category = this.editModel.categoryList[0].code;
 
           this.readCategory(this.editModel.language);
-          this.galleryRead();
+          // this.galleryRead();
           this.galleryFileRead();
 
           // <----- Organization
@@ -241,17 +222,20 @@ export class NewsEditComponent implements OnInit {
   }
 
   update() {
-    if (this.editModel.image != undefined)
-      this.editModel.imageUrl = this.editModel.image[0].imageUrl;
+    // if (this.editModel.image != undefined)
+    //   this.editModel.imageUrl = this.editModel.image[0].imageUrl;
 
-    if (this.editModel?.imageB != undefined)
-      if (this.editModel?.imageB?.length > 0)
-        this.editModel.imageBanner = this.editModel.imageB[0].imageUrl;
+    if (this.editModel.category == "") {
+      this.toastr.warning("กรุณาเลือกหมวดหมู่", "แจ้งเตือนระบบ", {
+        timeOut: 1000,
+      });
+      return;
+    }
 
     //fileUrl update
-    if (this.editModel.file != undefined) {
-      if (this.editModel.file.length > 0) {
-        this.editModel.fileUrl = this.editModel.file[0].fileUrl;
+    if (this.editModel.galleryFile != undefined) {
+      if (this.editModel.galleryFile.length > 0) {
+        this.editModel.fileUrl = this.editModel.galleryFile[0].imageUrl;
       } else {
         this.editModel.fileUrl = "";
       }
@@ -272,31 +256,10 @@ export class NewsEditComponent implements OnInit {
     this.serviceProviderService.post(this.url.update, this.editModel).subscribe(
       (data) => {
         this.serviceProviderService
-          .post(this.url.gallery.delete, this.editModel)
-          .subscribe(
-            (data) => {
-              if (this.editModel?.gallery?.length > 0) {
-                this.editModel.gallery.forEach((element) => {
-                  // element.code = this.editModel.code; //เพิ่ม set active false ทั้วหมด
-                  element.reference = this.editModel.code;
-                  element.imageUrl = element.imageUrl;
-                  this.serviceProviderService
-                    .post(this.url.gallery.create, element)
-                    .subscribe(
-                      (data) => {},
-                      (err) => {}
-                    );
-                });
-              }
-            },
-            (err) => {}
-          );
-
-        this.serviceProviderService
           .post(this.url.galleryFile.delete, this.editModel)
           .subscribe(
             (data) => {
-              if (this.editModel?.galleryFile?.length > 0) {
+              if (this.editModel.galleryFile.length > 0) {
                 this.editModel.galleryFile.forEach((element) => {
                   // element.code = this.editModel.code; //เพิ่ม set active false ทั้วหมด
                   element.reference = this.editModel.code;
@@ -335,7 +298,7 @@ export class NewsEditComponent implements OnInit {
     this.editModel.language = param;
     if (this.editModel.language != "") {
       this.serviceProviderService
-        .post("news/category/read", {
+        .post("certificate/category/read", {
           language: param,
           permission: this.permission,
         })
@@ -350,6 +313,7 @@ export class NewsEditComponent implements OnInit {
                 display: element.title,
               });
             });
+
             if (this.code == "")
               this.editModel.category = this.listCategory[0].value;
           },
@@ -358,42 +322,14 @@ export class NewsEditComponent implements OnInit {
     }
   }
 
-  readProduct() {
-    this.serviceProviderService
-      .post("m/product/read", { permission: this.permission })
-      .subscribe(
-        (data) => {
-          let model: any = {};
-          model = data;
-          this.productList = [{ value: "", display: "งานภายใน" }];
-          model.objectData.forEach((element) => {
-            this.productList.push({
-              value: element.code,
-              display: element.title,
-            });
-          });
-          if (this.code == "")
-            this.editModel.productCode = this.productList[0].value;
-        },
-        (err) => {}
-      );
-  }
-
   galleryRead() {
     this.serviceProviderService
-      .post("m/news/gallery/read", { code: this.editModel.code })
+      .post("m/certificate/gallery/read", { code: this.editModel.code })
       .subscribe(
         (data) => {
           let model: any = {};
           model = data;
-          // this.editModel.gallery = model.objectData;
-          this.editModel.gallery = [];
-          var idx = 0;
-          model.objectData.forEach((c) => {
-            idx++;
-            c.sequence = idx;
-            this.editModel.gallery.push(c);
-          });
+          this.editModel.gallery = model.objectData;
         },
         (err) => {}
       );
@@ -401,7 +337,7 @@ export class NewsEditComponent implements OnInit {
 
   galleryFileRead() {
     this.serviceProviderService
-      .post("m/news/galleryFile/read", { code: this.editModel.code })
+      .post("m/certificate/galleryFile/read", { code: this.editModel.code })
       .subscribe(
         (data) => {
           let model: any = {};
@@ -422,12 +358,12 @@ export class NewsEditComponent implements OnInit {
   checkSave() {
     if (this.code != "") {
       // <----- Validate title, image, category
-      if (this.validService.isValidateUpdate(this.editModel)) return;
+      if (this.isValidate(this.editModel)) return;
 
       this.checkPermission(this.editModel.category, "updateAction");
     } else {
       // <----- Validate title, image, category
-      if (this.validService.isValidateCreate(this.editModel)) return;
+      if (this.isValidate(this.editModel)) return;
 
       this.checkPermission(this.editModel.category, "createAction");
     }
@@ -458,7 +394,11 @@ export class NewsEditComponent implements OnInit {
 
   exportAsXLSX(): void {
     this.serviceProviderService
-      .post("news/comment/read", { skip: 0, limit: 999999, code: this.code })
+      .post("certificate/comment/read", {
+        skip: 0,
+        limit: 999999,
+        code: this.code,
+      })
       .subscribe(
         (data) => {
           let model: any = {};
@@ -490,19 +430,27 @@ export class NewsEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(["news"], { skipLocationChange: true });
+    this.router.navigate(["certificate"], { skipLocationChange: true });
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(
-      this.editModel.gallery,
-      event.previousIndex,
-      event.currentIndex
-    );
-    let index = 0;
-    this.editModel.gallery.forEach((c) => {
-      index++;
-      c.sequence = index;
-    });
+  isValidate(param) {
+
+    let isValid = false;
+    if (param.title == '') {
+      this.toastr.warning('กรุณาใส่หัวข้อ', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+      isValid = true;
+    }
+
+    // if (param.image.length == 0) {
+    //   this.toastr.warning('กรุณาใส่รูปภาพ', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+    //   isValid = true;
+    // }
+
+    if (param.category == '') {
+      this.toastr.warning('กรุณาเลือกหมวดหมู่', 'แจ้งเตือนระบบ', { timeOut: 1000 });
+      isValid = true;
+    }
+
+    return isValid;
   }
 }

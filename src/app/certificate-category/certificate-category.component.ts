@@ -1,16 +1,15 @@
-import { Component, KeyValueChanges, KeyValueDiffer, KeyValueDiffers, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { ServiceProviderService } from '../shared/service-provider.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ServiceProviderService } from './../shared/service-provider.service';
+import { Component, OnInit, Input, Output, EventEmitter, KeyValueDiffer, KeyValueDiffers, KeyValueChanges } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-portfolio',
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.css']
+  selector: 'app-certificate-category',
+  templateUrl: './certificate-category.component.html',
+  styleUrls: ['./certificate-category.component.css']
 })
-export class PortfolioComponent implements OnInit {
-
+export class CertificateCategoryComponent implements OnInit {
   model: any = [];
   listModel: string = '';
   isAdvanceSearch: boolean = true;
@@ -24,36 +23,27 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (localStorage.getItem('portfolioPage') != null) {
+    if (localStorage.getItem('certificateCategoryPage') != null) {
       let model: any = [];
-      model = JSON.parse(localStorage.getItem('portfolioPage'));
+      model = JSON.parse(localStorage.getItem('certificateCategoryPage'));
 
       for (let index = 0; index < model.length; index++) {
         if (index == 0)
           this.permission = model[index].title;
         else
-          this.permission = this.permission + "," + model[index].title;
+          this.permission = this.permission + "," + model[index].title;        
       }
     }
-    this.serviceProviderService.SendIPAddress("ผลงาน");
+
     this.paginationModelDiffer = this.differs.find(this.paginationModel).create(); // <----- Pagination
   }
 
   read() {
     this.spinner.show();
-    if (this.isAdvanceSearch)
-      this.criteriaModel.keySearch = ''
+    
+    this.criteriaModel.permission = 'all';
 
-    if (this.criteriaModel.skip == 0) {
-      this.paginationModel.currentPage = 1;
-    }
-    let userCenter = localStorage.getItem('userCenter');
-    if(userCenter != '')
-    {
-      this.criteriaModel.center = userCenter;
-    }
-
-    this.serviceProviderService.post('portfolio/read', this.criteriaModel).subscribe(data => {
+    this.serviceProviderService.post('certificate/category/read', this.criteriaModel).subscribe(data => {
       setTimeout(() => {
         let model: any = {};
         model = data;
@@ -62,12 +52,12 @@ export class PortfolioComponent implements OnInit {
         this.paginationModel.totalItems = model.totalData; // <----- Pagination
         this.paginationModel.itemsPerPage = this.criteriaModel.limit;
         this.paginationModel.itemsPerPageString = this.paginationModel.itemsPerPage.toString();
-
+        
         if ((this.criteriaModel.skip + this.paginationModel.itemsPerPage) > this.paginationModel.totalItems)
-          this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว';
+          this.paginationModel.textPage = this.paginationModel.totalItems != 0 ? 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + this.paginationModel.totalItems + ' จาก ' + this.paginationModel.totalItems + ' แถว' : 'แสดง 0 ถึง 0 จาก 0 แถว' ;
         else
           this.paginationModel.textPage = 'แสดง ' + (this.criteriaModel.skip + 1) + ' ถึง ' + (this.criteriaModel.skip + this.paginationModel.itemsPerPage) + ' จาก ' + this.paginationModel.totalItems + ' แถว';
-
+        
         this.spinner.hide();
       }, 500);
     }, err => {
@@ -78,7 +68,6 @@ export class PortfolioComponent implements OnInit {
 
   async getMessageCriteria(message: any) {
     this.criteriaModel = message;
-    this.isAdvanceSearch = true;
     await this.read();
   }
 
@@ -92,8 +81,7 @@ export class PortfolioComponent implements OnInit {
       // this.criteriaHide = true;
       // this.listHide = true;
       // this.editHide = false;
-    } else if (message.mode == 'search') {
-      this.isAdvanceSearch = false;
+    }else if(message.mode == 'search'){
       this.criteriaModel.limit = message.limit;
       this.criteriaModel.keySearch = message.keySearch;
       this.criteriaModel.skip = 0;
@@ -102,13 +90,14 @@ export class PortfolioComponent implements OnInit {
       this.read();
     }
   }
-
+  
   // <----- Pagination
   paginationModelChanged(changes: KeyValueChanges<string, any>) {
     // console.log('changes');
+    
     this.criteriaModel.skip = this.paginationModel.currentPage == 1 ? 0 : (this.paginationModel.currentPage * this.paginationModel.itemsPerPage) - this.paginationModel.itemsPerPage; // <----- Pagination
     this.criteriaModel.limit = this.paginationModel.itemsPerPage; // <----- Pagination
-    this.criteriaModel.permission = this.permission;
+    this.criteriaModel.permission = this.permission; 
 
     this.read();
     /* If you want to see details then use
@@ -121,10 +110,10 @@ export class PortfolioComponent implements OnInit {
   // <----- Pagination 
   ngDoCheck(): void {
 
-    const changes = this.paginationModelDiffer.diff(this.paginationModel);
-    if (changes) {
-      this.paginationModelChanged(changes);
-    }
+      const changes = this.paginationModelDiffer.diff(this.paginationModel);
+      if (changes) {
+        this.paginationModelChanged(changes);
+      }
   }
 
 }

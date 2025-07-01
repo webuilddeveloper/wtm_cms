@@ -108,12 +108,38 @@ export class AppComponent {
                   );
 
                 this.serviceProviderService
+                  .post("register/page/read", { title: "portfolioPage" })
+                  .subscribe(
+                    (data) => {
+                      let model: any = data;
+                      localStorage.setItem(
+                        "portfolioPage",
+                        JSON.stringify(model.objectData)
+                      );
+                    },
+                    (err) => {}
+                  );
+
+                this.serviceProviderService
                   .post("register/page/read", { title: "employeePage" })
                   .subscribe(
                     (data) => {
                       let model: any = data;
                       localStorage.setItem(
                         "employeePage",
+                        JSON.stringify(model.objectData)
+                      );
+                    },
+                    (err) => {}
+                  );
+
+                this.serviceProviderService
+                  .post("register/page/read", { title: "certificatePage" })
+                  .subscribe(
+                    (data) => {
+                      let model: any = data;
+                      localStorage.setItem(
+                        "certificatePage",
                         JSON.stringify(model.objectData)
                       );
                     },
@@ -297,20 +323,19 @@ export class AppComponent {
       },
       {
         name: "หมวดหมู่ผลิตภัณฑ์",
-        routing: "/portfolio-category",
-        data: "",
-        type: "N",
-        isActive: false,
-        isShow: true
-        // this.category.portfolioCategoryPage,
-      },
-      {
-        name: "หมวดหมู่ผลงาน",
         routing: "/product-category",
         data: "",
         type: "N",
         isActive: false,
         isShow: this.category.productCategoryPage,
+      },
+      {
+        name: "หมวดหมู่ผลงาน",
+        routing: "/portfolio-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.portfolioCategoryPage,
       },
       {
         name: "หมวดหมู่พนักงาน",
@@ -319,6 +344,14 @@ export class AppComponent {
         type: "N",
         isActive: false,
         isShow: this.category.employeeCategoryPage,
+      },
+      {
+        name: "หมวดหมู่ใบรับรอง",
+        routing: "/certificate-category",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.certificateCategoryPage,
       },
     ];
 
@@ -362,6 +395,14 @@ export class AppComponent {
         type: "N",
         isActive: false,
         isShow: this.category.workProcessPage,
+      },
+      {
+        name: "ใบรับรอง",
+        routing: "/certificate",
+        data: "",
+        type: "N",
+        isActive: false,
+        isShow: this.category.certificatePage,
       },
     ];
 
@@ -967,6 +1008,7 @@ export class AppComponent {
     localStorage.removeItem("employeePage");
     localStorage.removeItem("workProcessPage");
     localStorage.removeItem("portfolioPage");
+    localStorage.removeItem("certificatePage");
 
     window.location.href = "";
   }
