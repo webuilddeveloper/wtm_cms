@@ -63,6 +63,8 @@ import { CertificateComponent } from "./certificate/certificate.component";
 import { CertificateEditComponent } from "./certificate/certificate-edit/certificate-edit.component";
 import { CertificateCategoryComponent } from "./certificate-category/certificate-category.component";
 import { CertificateCategoryEditComponent } from "./certificate-category/certificate-category-edit/certificate-category-edit.component";
+import { PortfolioCategoryComponent } from "./portfolio-category/portfolio-category.component";
+import { PortfolioCategoryEditComponent } from "./portfolio-category/portfolio-category-edit/portfolio-category-edit.component";
 
 const routes: Routes = [
   { path: "", component: DashboardComponent },
@@ -137,6 +139,11 @@ const routes: Routes = [
 
   { path: "portfolio", component: PortfolioComponent },
   { path: "portfolio-edit/:code", component: PortfolioEditComponent },
+  { path: "portfolio-category", component: PortfolioCategoryComponent },
+  {
+    path: "portfolio-category-edit/:code",
+    component: PortfolioCategoryEditComponent,
+  },
 
   { path: "certificate", component: CertificateComponent },
   { path: "certificate-edit/:code", component: CertificateEditComponent },

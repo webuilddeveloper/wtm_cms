@@ -24,9 +24,9 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (localStorage.getItem('productPage') != null) {
+    if (localStorage.getItem('portfolioPage') != null) {
       let model: any = [];
-      model = JSON.parse(localStorage.getItem('productPage'));
+      model = JSON.parse(localStorage.getItem('portfolioPage'));
 
       for (let index = 0; index < model.length; index++) {
         if (index == 0)
@@ -53,7 +53,7 @@ export class PortfolioComponent implements OnInit {
       this.criteriaModel.center = userCenter;
     }
 
-    this.serviceProviderService.post('product/read', this.criteriaModel).subscribe(data => {
+    this.serviceProviderService.post('portfolio/read', this.criteriaModel).subscribe(data => {
       setTimeout(() => {
         let model: any = {};
         model = data;

@@ -34,9 +34,9 @@ export class PortfolioListComponent implements OnInit {
         this.category = JSON.parse(localStorage.getItem('category'));
       }
   
-      if (localStorage.getItem('productPage') != null) {
+      if (localStorage.getItem('portfolioPage') != null) {
         let model: any = [];
-        this.permission = JSON.parse(localStorage.getItem('productPage'));
+        this.permission = JSON.parse(localStorage.getItem('portfolioPage'));
   
   
         // convert permission list to string

@@ -37,9 +37,9 @@ export class PortfolioCriteriaComponent implements OnInit {
   
     ngOnInit(): void {
   
-      if (localStorage.getItem('productPage') != null) {
+      if (localStorage.getItem('portfolioPage') != null) {
         let model: any = [];
-        model = JSON.parse(localStorage.getItem('productPage'));
+        model = JSON.parse(localStorage.getItem('portfolioPage'));
   
         for (let index = 0; index < model.length; index++) {
           if (index == 0)
@@ -86,7 +86,7 @@ export class PortfolioCriteriaComponent implements OnInit {
   
     readSequence() {
       this.criteriaModel.permission = this.permission;
-      this.serviceProviderService.post('groupby/read', { permission: this.permission, title: 'product' }).subscribe(data => {
+      this.serviceProviderService.post('groupby/read', { permission: this.permission, title: 'portfolio' }).subscribe(data => {
         let model: any = {};
         model = data;
         this.listSequence = model.objectData;
@@ -96,7 +96,7 @@ export class PortfolioCriteriaComponent implements OnInit {
   
     readCategory() {
       this.criteriaModel.permission = this.permission;
-      this.serviceProviderService.post('product/category/read', this.criteriaModel).subscribe(data => {
+      this.serviceProviderService.post('portfolio/category/read', this.criteriaModel).subscribe(data => {
         let model: any = {};
         model = data;
         this.listCategory = [{ value: '', display: 'ทั้งหมด' }];

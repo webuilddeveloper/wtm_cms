@@ -62,6 +62,7 @@ export class UserRoleEditComponent implements OnInit {
   productCategory: any = [];
   employeeCategory: any = [];
   certificateCategory: any = [];
+  portfolioCategory: any = [];
 
   messageInput: any = [];
   messageInputSlice: any = [];
@@ -106,6 +107,7 @@ export class UserRoleEditComponent implements OnInit {
     this.readProductCategory();
     this.readEmployeeCategory();
     this.readCertificateCategory();
+    this.readPortfolioCategory();
 
     // this.editModel.image = [];
     this.activetedRoute.queryParams.subscribe((params) => {
@@ -365,6 +367,8 @@ export class UserRoleEditComponent implements OnInit {
                     element.title = element.employeeCategoryList[0].title;
                   if (element.certificatePage)
                     element.title = element.certificateCategoryList[0].title;
+                  if (element.portfolioPage)
+                    element.title = element.portfolioCategoryList[0].title;
                 });
 
                 this.setLocalTable(0, 10);
@@ -546,6 +550,7 @@ export class UserRoleEditComponent implements OnInit {
     this.editModel.productCategoryPage = true;
     this.editModel.employeeCategoryPage = true;
     this.editModel.certificateCategoryPage = true;
+    this.editModel.portfolioCategoryPage = true;
   }
 
   checkAllMain() {
@@ -1018,13 +1023,32 @@ export class UserRoleEditComponent implements OnInit {
     );
   }
 
-    readCertificateCategory() {
-    this.serviceProviderService.post("m/certificate/category/read", {}).subscribe(
+  readCertificateCategory() {
+    this.serviceProviderService
+      .post("m/certificate/category/read", {})
+      .subscribe(
+        (data) => {
+          let model: any = {};
+          model = data;
+          model.objectData.forEach((element) => {
+            this.certificateCategory.push({
+              value: element.code,
+              display: element.title,
+            });
+          });
+          // console.log('list', this.newCategory);
+        },
+        (err) => {}
+      );
+  }
+
+    readPortfolioCategory() {
+    this.serviceProviderService.post("m/portfolio/category/read", {}).subscribe(
       (data) => {
         let model: any = {};
         model = data;
         model.objectData.forEach((element) => {
-          this.certificateCategory.push({
+          this.portfolioCategory.push({
             value: element.code,
             display: element.title,
           });
@@ -1096,6 +1120,8 @@ export class UserRoleEditComponent implements OnInit {
     if (this.editModel.employeePage) this.chooseAllEmployee();
 
     if (this.editModel.certificatePage) this.chooseAllCertificate();
+
+    if (this.editModel.portfolioPage) this.chooseAllPortfolio();
   }
 
   async chooseAllNews() {
@@ -1461,11 +1487,11 @@ export class UserRoleEditComponent implements OnInit {
     await this.productCategory.forEach((element) => {
       if (
         this.messageInput.findIndex(
-          (item) => item.category == element.value && item.page == "ผลงาน"
+          (item) => item.category == element.value && item.page == "ผลิตภัณฑ์"
         ) === -1
       ) {
         this.messageInput.splice(0, 0, {
-          page: "ผลงาน",
+          page: "ผลิตภัณฑ์",
           category: element.value,
           title: element.display,
           productPage: true,
@@ -1509,6 +1535,26 @@ export class UserRoleEditComponent implements OnInit {
           category: element.value,
           title: element.display,
           certificatePage: true,
+        });
+      } else {
+        // console.log("element found");
+      }
+    });
+    this.setLocalTable(0, 10);
+  }
+
+  async chooseAllPortfolio() {
+    await this.portfolioCategory.forEach((element) => {
+      if (
+        this.messageInput.findIndex(
+          (item) => item.category == element.value && item.page == "ผลงาน"
+        ) === -1
+      ) {
+        this.messageInput.splice(0, 0, {
+          page: "ผลงาน",
+          category: element.value,
+          title: element.display,
+          portfolioPage: true,
         });
       } else {
         // console.log("element found");
@@ -1895,6 +1941,21 @@ export class UserRoleEditComponent implements OnInit {
               category: category,
               title: this.certificateCategory[idx].display,
               certificatePage: true,
+            });
+          }
+        } else if (param == "portfolioPage") {
+          if (
+            this.portfolioCategory.findIndex((item) => item.value == category) !=
+            -1
+          ) {
+            let idx = this.portfolioCategory.findIndex(
+              (item) => item.value == category
+            );
+            this.messageInput.splice(0, 0, {
+              page: page,
+              category: category,
+              title: this.portfolioCategory[idx].display,
+              portfolioPage: true,
             });
           }
         }

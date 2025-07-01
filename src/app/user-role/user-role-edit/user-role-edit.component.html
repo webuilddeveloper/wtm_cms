@@ -191,8 +191,13 @@
               </ccb>
             </div>
             <div class="s12">
-              <ccb (cModel)="editModel.productCategoryPage = $event" [label]="'หมวดหมู่ผลงาน'"
+              <ccb (cModel)="editModel.productCategoryPage = $event" [label]="'หมวดหมู่ผลิตภัณฑ์'"
                 [data]="editModel.productCategoryPage">
+              </ccb>
+            </div>
+            <div class="s12">
+              <ccb (cModel)="editModel.portfolioCategoryPage = $event" [label]="'หมวดหมู่ผลงาน'"
+                [data]="editModel.portfolioCategoryPage">
               </ccb>
             </div>
             <div class="s12">
@@ -200,7 +205,7 @@
                 [data]="editModel.employeeCategoryPage">
               </ccb>
             </div>
-                <div class="s12">
+            <div class="s12">
               <ccb (cModel)="editModel.certificateCategoryPage = $event" [label]="'หมวดหมู่ใบรับรอง'"
                 [data]="editModel.certificateCategoryPage">
               </ccb>
@@ -423,14 +428,14 @@
 
                 <div class="row" style="margin-top: 10px;">
                   <div class="col s12">
-                    <span>การเข้าถึงผลงาน <a href="javascript:void(0)"
+                    <span>การเข้าถึงผลิตภัณฑ์ <a href="javascript:void(0)"
                         (click)="chooseAllProduct()">เลือกทั้งหมด</a></span>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col s12">
-                    <csop (cModel)="chooseCategory('ผลงาน', $event, 'productPage')" [label]="'เลือกรายการ : '"
+                    <csop (cModel)="chooseCategory('ผลิตภัณฑ์', $event, 'productPage')" [label]="'เลือกรายการ : '"
                       [data]="editModel.category" [sources]="productCategory">
                     </csop>
                   </div>
@@ -438,6 +443,27 @@
 
               </div>
             </div>
+            <div [hidden]="!editModel.portfolioPage" class="row">
+              <div class="col s12">
+
+                <div class="row" style="margin-top: 10px;">
+                  <div class="col s12">
+                    <span>การเข้าถึงผลงาน <a href="javascript:void(0)"
+                        (click)="chooseAllProduct()">เลือกทั้งหมด</a></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12">
+                    <csop (cModel)="chooseCategory('ผลงาน', $event, 'portfolioPage')" [label]="'เลือกรายการ : '"
+                      [data]="editModel.category" [sources]="portfolioCategory">
+                    </csop>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
             <div [hidden]="!editModel.employeePage" class="row">
               <div class="col s12">
 
@@ -471,7 +497,7 @@
                 <div class="row">
                   <div class="col s12">
                     <csop (cModel)="chooseCategory('ใบรับรอง', $event, 'certificatePage')" [label]="'เลือกรายการ : '"
-                      [data]="editModel.category" [sources]="productCategory">
+                      [data]="editModel.category" [sources]="certificateCategory">
                     </csop>
                   </div>
                 </div>
